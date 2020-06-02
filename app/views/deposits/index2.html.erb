@@ -1,0 +1,82 @@
+<div class="container">
+    <h2>検索結果</h2>
+
+    <%require "date"%>
+
+    
+
+    <div class="select-all">
+    <%= form_tag("/deposits/#{current_user.id}/index_select2")  do |f| %>
+
+        <li>取引先</li>
+        <input value ="<%= @cust.cust_name %>" class="c_name">
+
+        
+        <!-- d.end_of_month 月末を示す -->
+
+        
+        
+        <!-- 売上日  -->
+        
+        <ul>
+            <li>売上日</li>
+            
+            <input value = "<%= @sales_year %>" class="year">
+            <li class="yymm">年</li>
+            <input value = "<%= @sales_month %>" class="month">
+            <li class="yymm">月 ～</li> 
+            <input value = "<%= @sales_year2 %>" class="year">
+            <li class="yymm">年</li>
+            <input value = "<%= @sales_month2 %>" class="month">
+            <li class="yymm">月</li>
+            <%=link_to("戻る","/deposits/#{current_user.id}/index_select2") %>
+
+        </ul>
+
+
+    <% end %>
+    </div>
+
+
+    <table border=1>
+    <tr><th></th> <th>売上日</th>　<th>売上金額</th> <th>振込金額</th> <th>振込手数料</th>
+    <th>手形回収</th> <th>その他</th> </tr>
+        <% @accounts.each do |account| %>
+            
+            <tr>
+                <td class="btn2"><%=link_to("選択","/deposits/#{account.user_id}/#{account.id}/show")%></td>
+                <td class="s_date"><%=account.sales_date%></td>
+                <td class="amount"><%=account.amount.to_i.to_s(:delimited)%></td> 
+                <% @depos=Deposit.where(account_id: account.id) %>
+                <% deposit_amount = 0 %>
+                <% transfer_fee = 0 %>
+                <% notes_rec = 0 %>
+                <% temporary_pay = 0 %>
+                    <% if @depos %>                    
+                        <% @depos.each do |depo| %>
+                            <% if depo.deposit_amount != nil %>
+                                <% deposit_amount += depo.deposit_amount %>
+                            <%end%>
+                            <% if depo.transfer_fee != nil %>
+                                <% transfer_fee += depo.transfer_fee %>
+                            <%end%>
+                            <% if depo.notes_rec != nil %>
+                                <% notes_rec += depo.notes_rec %>
+                            <%end%>
+                            <% if depo.temporary_pay %>
+                                <% temporary_pay += depo.temporary_pay %>
+                            <%end%>
+                        <%end%>
+                    <%end%>
+            <td class="amount"><%=deposit_amount.to_i.to_s(:delimited)%></td>
+            <td class="amount"><%=transfer_fee.to_i.to_s(:delimited)%></td>
+            <td class="amount"><%=notes_rec.to_i.to_s(:delimited)%></td>
+            <td class="amount"><%=temporary_pay.to_i.to_s(:delimited)%></td>
+
+            </tr>
+
+        <% end %>
+        
+    </table>
+    
+</div>

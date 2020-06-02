@@ -1,0 +1,49 @@
+<table border=1>
+<tr>
+    <th rowspan="2">取引先名</th>
+    <th colspan="2">売  上</th>                
+    <th colspan="5" class="th_k">回収状況</th>                
+</tr> 
+
+
+<tr>
+    
+    <th>売上日</th>
+    <th>売 上 金 額</th>
+    <th class="th_k2">入 金 合 計</th>
+    <th class="th_k">振 込 金 額</th>
+    <th class="th_k">振込手数料</th>
+    <th class="th_k">手 形 回 収</th>
+    <th class="th_k">そ の 他</th>
+</tr> 
+
+
+<% @custs.length.times do |i| %>
+
+<% if @custs.length - 1 == i%>
+<tr>
+    <td class="total" colspan="2">合    計</td>
+    
+    <td class="amount"><%=@amounts[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@total_deposits[i].to_i.to_s(:delimited)%></td> 
+    <td class="amount"><%=@deposit_amounts[i].to_i.to_s(:delimited)%></td> 
+    <td class="amount"><%=@transfers[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@notes[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@temporarys[i].to_i.to_s(:delimited)%></td>                
+</tr>
+<%else%>
+<tr>
+    <td class="c_name"><%=@custs[i]%></td>
+    <td class="s_date"><%=@sales_dates[i]%></td> 
+    <td class="amount"><%=@amounts[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@total_deposits[i].to_i.to_s(:delimited)%></td> 
+    <td class="amount"><%=@deposit_amounts[i].to_i.to_s(:delimited)%></td> 
+    <td class="amount"><%=@transfers[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@notes[i].to_i.to_s(:delimited)%></td>
+    <td class="amount"><%=@temporarys[i].to_i.to_s(:delimited)%></td>                
+</tr>
+<%end%>
+
+<%end%>     
+
+</table>

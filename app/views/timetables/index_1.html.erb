@@ -1,0 +1,50 @@
+<div class="container">
+
+<h2>時系列表（売上日基準）</h2>
+
+<div class="select-all">
+   <ul>
+    <li class="c_name_left"><%= @cust.cust_name %></li>
+    <li><%=link_to("戻る","/timetables/#{current_user.id}/index") %></li>
+   </ul>
+</div>
+
+<table border=1>
+<tr>
+<th>月度</th><th>売上</th><th>入金</th><th>残高</th>
+</tr>
+
+
+
+<% leftover = 0 %>
+<% 13.times do |i| %>
+    <tr>
+    <% if i == 0 %>
+        <td class="s_date"><%=@yyyymm[i]%></td> 
+    <%else%>
+        <td class="s_date"><%="#{@yyyymm[i].year}/#{@yyyymm[i].month}"%></td> 
+    <%end%>
+
+    <% if i == 0 %> <!-- 前期分は繰り越した分だけ表示する。-->
+        <% if @amount[i] > @deposit_total[i] %>
+            <td class="amount"><%=( @amount[i] - @deposit_total[i]).to_i.to_s(:delimited)%></td>                  
+            <td class="amount"><%=0%></tb> 
+        <%else%>
+            <td class="amount"><%=0%></tb> 
+            <td class="amount"><%=( @deposit_total[i] - @amount[i] ).to_i.to_s(:delimited)%></td>          
+        <%end%>
+    <%else%>
+        <td class="amount"><%=@amount[i].to_i.to_s(:delimited)%></td>                  
+        <td class="amount"><%=@deposit_total[i].to_i.to_s(:delimited)%></td> 
+    <%end%>
+    
+    <td class="amount"><%=(@amount[i] - @deposit_total[i] + leftover).to_i.to_s(:delimited)%></td>
+    </tr>
+    <% leftover = @amount[i] - @deposit_total[i] + leftover%>
+<%end%>
+
+</table>
+
+</div>
+
+

@@ -1,0 +1,45 @@
+
+<div class="container">
+<h2>全取引先売掛金合計</h2>
+
+    <div class="select-all">
+    <%= form_tag("/accounts/#{current_user.id}/index_summary")  do |f| %>
+
+    <% d = Date.today %>
+
+
+    <!-- 売上日  -->
+    
+    <ul>
+        <li>売上日</li>
+        
+        <select name="year" class="year-s">
+        <% @year=[2019,2020,2021] %>
+        <%= @year.each do |year| %>
+            <% if year == d.year %>
+                <option value="<%=year%>" selected><%=year%></option>
+            <%else%>
+                <option value="<%=year%>"><%=year%></option> 
+            <%end%>
+        <% end %>
+        </select> 
+        <li class="yymm">年</li>    
+
+        <select name="month" class="month-s">
+        <% @month=[1,2,3,4,5,6,7,8,9,10,11,12] %>
+        <%= @month.each do |month| %>
+            <% if month == d.month %>
+            <option value="<%=month%>" selected><%=month%></option>
+            <%else%>
+            <option value="<%=month%>" ><%=month%></option>
+            <%end%>
+        <% end %>
+        </select> 
+        <li class="yymm">月</li>     
+        <input type="submit" value = "検索" class="search-btn">
+
+    </ul>
+    
+    <% end %>
+    </div>        
+</div>

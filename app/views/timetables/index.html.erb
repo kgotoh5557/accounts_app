@@ -1,0 +1,12 @@
+<div class="container">
+
+    <h2>時系列表（売上日基準）</h2>
+
+    <div class="select-all">
+        <%= form_tag("/timetables/#{current_user.id}/index/1")  do |f| %>
+            
+        <%= render :partial => "common_form1" %>
+        
+        <% end %>
+    </div>
+</div>

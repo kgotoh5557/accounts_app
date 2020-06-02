@@ -1,0 +1,56 @@
+<div class="container">
+    <h2>全取引先売掛金合計</h2>
+
+    <%require "date"%>
+
+    
+    
+        
+        <!-- 売上日  -->
+        <div class="select-all">
+            <ul>
+                <li>売上日</li>
+                
+                <input value = "<%= @sales_year %>" class="year">
+                <li class="yymm">年</li>
+                <input value = "<%= @sales_month %>" class="month">
+                <li class="yymm">月</li>
+                
+                <%=link_to("戻る","/accounts/#{current_user.id}/index_select_summary")%>
+
+            </ul>
+        </div>
+
+    <table border=1>
+            <tr>                
+                <th colspan="3">売  上</th>                
+                <th colspan="5" class="th_k">回収状況</th>                
+            </tr> 
+            <tr>
+                <th>得意先CD</th>
+                <th>得  意  先  名</th>
+                <th>売 上 合 計</th>
+                <th class="th_k2">入 金 合 計</th>
+                <th class="th_k">振 込 金 額</th>
+                <th class="th_k">振込手数料</th>
+                <th class="th_k">手 形 回 収</th>
+                <th class="th_k">そ の 他</th>
+            </tr>   
+    <% @cust_name.length.times do |i| %>
+            
+            <tr>
+                <td class="c_code"><%=@cust_code[i]%></td> 
+                <td class="c_name"><%=@cust_name[i]%></td>
+                <td class="amount"><%=@cust_sales[i].to_i.to_s(:delimited)%></td>                
+                <td class="amount"><%=@total_deposits[i].to_i.to_s(:delimited)%></td> 
+                <td class="amount"><%=@deposit_amounts[i].to_i.to_s(:delimited)%></td> 
+                <td class="amount"><%=@transfers[i].to_i.to_s(:delimited)%></td>
+                <td class="amount"><%=@notes[i].to_i.to_s(:delimited)%></td>
+                <td class="amount"><%=@temporarys[i].to_i.to_s(:delimited)%></td>                 
+            </tr>
+
+    <%end%>     
+        
+    </table>
+
+</div>

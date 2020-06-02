@@ -1,0 +1,86 @@
+
+<div class="container">
+
+<h2>売掛金入力画面</h2>
+
+<%require "date"%>
+
+    <div class="select-all">
+        <%= form_tag("/accounts/#{current_user.id}/create")  do |f| %>
+
+            <li>得意先</li>
+            <select name="cust_id" class="c_name">
+            <%= @custs.each do |cust| %>
+                <option value="<%=cust.id%>"><%=cust.cust_name%></option>
+            <% end %>
+            </select>
+
+            <!-- d.end_of_month 月末を示す -->
+
+            <% d = Date.today %>
+            
+            <!-- 売上日  -->
+            
+            <ul>
+                <li>売上日</li>
+                
+                <select name="year" class="year-s">
+                <% @year=[2019,2020,2021] %>
+                <%= @year.each do |year| %>
+                    <% if year == d.year %>
+                        <option value="<%=year%>" selected><%=year%></option>
+                    <%else%>
+                        <option value="<%=year%>"><%=year%></option> 
+                    <%end%>
+                <% end %>
+                </select> 
+                <li class="yymm">年</li> 
+
+                <select name="month" class="month-s">
+                <% @month=[1,2,3,4,5,6,7,8,9,10,11,12] %>
+                <%= @month.each do |month| %>
+                    <% if month == d.month %>
+                    <option value="<%=month%>" selected><%=month%></option>
+                    <%else%>
+                    <option value="<%=month%>" ><%=month%></option>
+                    <%end%>
+                <% end %>
+                </select> 
+                <li class="yymm">月</li> 
+
+                <select name="day" class="month-s">
+                <% @day=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] %>
+                <%= @day.each do |day| %>
+                    <% if day == d.day %>
+                        <option value="<%=day%>" selected><%=day%></option>
+                    <%else%>
+                        <option value="<%=day%>"><%=day%></option>
+                    <%end%>
+                <% end %>
+                </select> 
+                <li class="yymm">日</li>
+                <div class="clear"></div>
+            </ul>
+
+            <ul>
+                <li>金額</li>
+                <li><input name="amount">円</li> 
+            </ul> 
+                
+            <ul>
+                <li>備考</li>
+                <li><textarea name="memo" class="memo" ><%=@account.memo%></textarea></li> 
+            </ul>
+
+            <input type="submit" value = "登録" class="search-btn-c"> 
+                      
+        <% end %>
+    </div>
+
+    <div class="error_message">
+        <% @account.errors.full_messages.each do  |message| %>
+            <%=message%>
+        <%end%>
+    </div>
+
+</div>

@@ -1,0 +1,13 @@
+<h2>得意先編集画面</h2>
+
+<%= form_tag("/customers/#{current_user.id}/#{@customer.id}/update") do %>
+        <p>得意先ＣＤ</p>  
+         
+        <input name="customer_cd" value=<%=@customer.cust_code %> ></input>
+        
+        <p>得意先名</p>       
+        <input name="customer_name" value=<%=@customer.cust_name %>></input>
+        
+        <p> </p>
+        <input  type="submit" value="更新">
+<%end%> 

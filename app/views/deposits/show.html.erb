@@ -1,0 +1,99 @@
+
+<table border=1>
+    <tr>
+        <th>得意先名</th>
+        <th>売上日</th>
+        <th>売上金額</th>
+        <th>振込金額</th>
+        <th>振込手数料</th>
+        <th>手形回収</th>
+        <th>その他</th> </tr>
+    </tr>
+    <tr>
+        <td class="c_name"><%=@cust.cust_name%></td>
+        <td class="s_date"><%=@acco.sales_date%></td>
+        <td class="amount"><%=@acco.amount.to_i.to_s(:delimited)%></td>    
+        <td class="amount"><%=@deposit_amount.to_i.to_s(:delimited)%></td>
+        <td class="amount"><%=@transfer_fee.to_i.to_s(:delimited)%></td>
+        <td class="amount"><%=@notes_rec.to_i.to_s(:delimited)%></td>
+        <td class="amount"><%=@temporary_pay.to_i.to_s(:delimited)%></td>
+    </tr>
+</table>
+
+<div class="container">
+        <%require "date"%>
+        <% d = Date.today %>
+    <div class="select-all">
+        <%= form_tag("/deposits/#{current_user.id}/#{@acco.id}/create") do %>
+            
+            <ul>
+            <li>入金日</li>
+            
+            <select name="year" class="year-s">
+            <% @year=[2019,2020,2021] %>
+            <%= @year.each do |year| %>
+                <% if year == d.year %>
+                    <option value="<%=year%>" selected><%=year%></option>
+                <%else%>
+                    <option value="<%=year%>"><%=year%></option> 
+                <%end%>
+            <% end %>
+            </select>
+            <li class="yymm">年</li> 
+
+            <select name="month" class="month-s">
+            <% @month=[1,2,3,4,5,6,7,8,9,10,11,12] %>
+            <%= @month.each do |month| %>
+                <% if month == d.month %>
+                <option value="<%=month%>" selected><%=month%></option>
+                <%else%>
+                <option value="<%=month%>" ><%=month%></option>
+                <%end%>
+            <% end %>
+            </select>
+            <li class="yymm">月</li> 
+
+            <select name="day" class="month-s">
+            <% @day=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31] %>
+            <%= @day.each do |day| %>
+                <% if day == d.day %>
+                    <option value="<%=day%>" selected><%=day%></option>
+                <%else%>
+                    <option value="<%=day%>"><%=day%></option>
+                <%end%>
+            <% end %>
+            </select> 
+            <li class="yymm">日</li>
+            <li class="clear"></li>
+        </ul>
+
+            <ul>
+                <li>入金金額</li>
+                <li><input name="deposit_amount">円</li>
+                
+            </ul>
+
+            <ul>
+                <li>振込手数料</li>
+                <li><input name="transfer_fee">円</li>
+            </ul>
+
+            <ul>
+                <li>手形回収</li>
+                <li><input name="notes_rec">円</li>
+            </ul>
+
+            <ul>
+                <li>その他</li>
+                <li><input name="temporary_pay">円</li>
+            </ul>
+
+            <ul>
+                <li>備考</li>
+                <li><textarea name="memo" class="memo"></textarea></li> 
+            </ul>
+
+            <input type="submit" value="登録" >
+        <% end %> 
+    </div>     
+ </div> 

@@ -1,0 +1,37 @@
+<div class="container">
+
+    <h2>取引先別売掛金明細</h2>
+    
+    <%require "date"%>
+
+    
+    <div class="select-all">
+        <%= form_tag("/accounts/#{current_user.id}/create")  do |f| %>
+
+            <li>得意先</li>
+            <input value ="<%= @cust.cust_name %>" class="c_name">
+
+            <!-- d.end_of_month 月末を示す -->
+
+            
+            
+            <!-- 売上日  -->
+            
+            <ul>
+                <li>売上日</li>
+                
+                <input value = "<%= @sales_year %>" class="year">
+                <li class="yymm">年</li> 
+                <input value = "<%= @sales_month %>" class="month">
+                <li class="yymm">月</li> 
+                <%=link_to("戻る","/accounts/#{current_user.id}/index_select")%>
+
+            </ul>
+
+
+        <% end %>
+    </div>
+
+    <%= render :partial => "common_table1" %>
+
+</div>

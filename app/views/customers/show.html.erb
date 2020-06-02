@@ -1,0 +1,7 @@
+
+<% @customers.each do |customer| %>
+    <ul>
+        <li><%= customer.cust_code %></li>
+        <li><%= link_to(customer.cust_name, "/customers/#{current_user.id}/#{customer.id}/edit") %></li>
+    </ul>
+<% end %>

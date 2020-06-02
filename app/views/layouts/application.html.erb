@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>test</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+　  <meta charset="utf-8" />
+
+        
+  </head>
+
+
+
+  <body>
+    
+        <header>
+         
+       <!--  user_signed_in? は　devise　の機能 -->
+          <% if user_signed_in? %>
+          <ul class="menu">
+              <li><a>売掛金関連</a>
+              <ul>
+                  <li><%= link_to("売掛金入力","/accounts/#{current_user.id}/new")  %></li>
+                  <li><%= link_to("検索（得意先明細）","/accounts/#{current_user.id}/index_select")  %></li>              
+                  <li><%= link_to("検索（得意先合計）","/accounts/#{current_user.id}/index_select_summary")  %></li>  
+                </ul>
+              </li>
+              <li><a>入金関連</a>
+                <ul>
+                <li><%= link_to("入金消込","/deposits/#{current_user.id}/index_select") %></li>
+                <li><%= link_to("検索（売上日基準）","/deposits/#{current_user.id}/index_select_sales") %></li>
+                <li><%= link_to("検索（入金日基準）","/deposits/#{current_user.id}/index_select_payment") %></li>
+                </ul>
+              </li>
+              <li><a>時系列表</a>
+                  <ul>
+                    <li><%= link_to( "売上日基準", "/timetables/#{current_user.id}/index" )%></li>
+                    <li><%= link_to( "入金日基準", "/timetables/#{current_user.id}/index_deposit" )%></li>
+                  </ul>
+              </li>
+              <li><a>設定変更</a>
+                <ul>
+                    <li><%= link_to '処理月度変更', edit_user_registration_path %></li>
+                    <li><%= link_to("取引先設定変更","#")  %>
+                      <ul>                   
+                        <li><%= link_to("取引先新規登録","/customers/#{current_user.id}/new")  %></li>
+                        <li><%= link_to("取引先一覧","/customers/#{current_user.id}/show")  %></li>
+                      </ul>
+                    </li>
+                    <li><a>会計年度</a>
+                      <ul>
+                        <li><%= link_to("更新","/fiscals/#{current_user.id}/edit") %>
+                        <li><%= link_to("新規登録","/fiscals/#{current_user.id}/new") %>
+                      </ul>
+                    </li>
+                    <li><%= link_to 'ユーザ設定変更', edit_user_registration_path %></li>
+                    <li><%= link_to '科目設定変更', edit_user_registration_path %></li>                                      
+                     
+                </ul>
+              
+              </li>
+              <li><%= link_to("仕訳ファイル作成","/downloads/#{current_user.id}/index") %></li>
+              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+          </ul>    
+          <% else %>
+          <ul class="menu">
+              <li><%= link_to 'ユーザ登録', new_user_registration_path %></li>
+              <li><%= link_to 'ログイン', new_user_session_path %></li>
+          </ul> 
+          <% end %>
+                          
+      </header>
+        
+        <div class="main">
+          <% if user_signed_in? %>
+              <p>ログインユーザー： <strong><%= current_user.email %></strong>.</P>
+          <%end%>
+          <p class="notice" ><%= notice %>
+          <p class="alert" ><%= alert %>
+  
+          <%= yield %>
+
+        </div>
+        <footer>
+          フッター
+        </footer>
+
+    
+  </body>
+</html>

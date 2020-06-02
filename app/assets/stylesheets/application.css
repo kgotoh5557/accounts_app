@@ -1,0 +1,350 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* 要素リセット */
+
+
+
+
+/*--------------------------------------------------------
+  レイアウト設定
+--------------------------------------------------------*/
+ul {padding-left:0}
+
+li {
+    list-style:none;
+    
+}
+
+a {
+    text-decoration:none;
+    color:white;
+}
+
+table {
+    background-color:white;
+    margin:0 auto;
+    
+}
+
+th {
+    background-color:#deeaee;
+
+}
+
+.th_k {
+    background-color:#f3b2d6;
+}
+
+.th_k2 {
+    background-color:#f37cbd;
+}
+
+.clear {
+    clear:left;
+}
+
+/* devise */
+.login_form {
+    width:400px;
+    margin:0 auto;
+    /* background-color:#009973; */
+    overflow:hidden;
+    padding:50px;
+    color:white;
+
+}
+
+.login_form h2 {
+    text-align:center;
+    color:white;
+}
+
+.email input{
+    
+    width: 400px;
+    height: 30px;
+    margin-bottom:10px;
+    padding-left:10px;
+    font-size:20px;
+    border-radius: 10px;
+}
+
+
+.hold-check{
+    margin:0 auto;
+    width:130px; 
+    height:30px;
+   
+}
+
+.shared-links {
+    margin:10px auto;
+    width:220px; 
+    height:60px;
+    padding:10px;
+    border-radius: 5px;
+    background-color:rgba(222,222,238,0.1);
+
+}
+
+.action-btn {
+    margin-top:10px;
+    text-align:center;
+    border-radius: 5px;
+}
+
+
+.container {
+    width:1100;
+    /*-- margin:0 auto; --*/
+    color:white;  
+}
+
+.container h2 {
+    text-align:center;
+}
+
+.container table {
+    color:black;
+    margin:0 auto;
+}
+
+.select-all {
+    width:400px;
+    margin:0 auto;
+    background-color:rgba(19, 104, 85, 0.8);
+    overflow:hidden;   
+}
+
+.select-all a {
+    display:inline-block;
+    width:70px;
+    height:21px;
+    line-height:21px;
+    background-color:#F0F0F0;
+    color:black;
+    text-align:center;
+    box-sizing: border-box; 
+    border: 0 solid black;
+    font-family: sans-serif; 
+    font-size: 10pt; 
+    margin-right:10px;
+    float:right;
+}
+
+.memo {
+    width:300px;
+}
+
+.btn {
+    display:inline-block;
+    width:70px;
+    height:21px;
+    line-height:21px;
+    background-color:#F0F0F0;
+    color:black;
+    text-align:center;
+    box-sizing: border-box; 
+    border: 0 solid black;
+    font-family: sans-serif; 
+    font-size: 10pt; 
+    margin-right:10px;
+    float:right;
+} 
+
+.btn2 {
+    display:inline-block;
+    width:70px;
+    height:21px;
+    line-height:21px;
+    background-color:rgb(23, 13, 71);
+    color:black;
+    text-align:center;
+    box-sizing: border-box; 
+    border: 0 solid black;
+    font-family: sans-serif; 
+    font-size: 10pt; 
+    margin:0 auto;
+
+} 
+
+
+.dummy {
+    background-color:yellowgreen;
+    color:white;
+}
+
+.yymm{
+    float:left;
+    margin-right:5px
+}
+
+.year {
+    width:57px;
+    text-align:center;
+    float:left;    
+}
+
+.year-s {
+    width:60px;
+    text-align:center;
+    float:left;    
+}
+
+.month {
+    width:37px;
+    text-align:center;
+    float:left;
+}
+
+.month-s {
+    width:40px;
+    text-align:center;
+    float:left;
+}
+
+
+
+.search-btn {
+    /* float:left; */
+    /* margin-left:20px; */
+    width:70px;
+    float:right;
+    margin-right:10px;
+}
+
+.search-btn-c {
+    /* float:left; */
+    margin-left:100px;
+    width:70px;
+    
+}
+
+.c_code {
+    text-align:center;    
+}
+
+.c_name {
+    text-align:left;
+    width:200px;
+    padding-left:5px;
+    
+}
+
+.c_name_left {
+    text-align:left;
+    width:200px;
+    padding-left:5px;
+    float:left;
+}
+
+.amount {
+    text-align:right;
+    width:100px;
+}
+
+.total {
+    text-align:center;
+}
+
+.s_date {
+    text-align:center;
+    width:100px;
+}
+
+.menu {
+    display: flex;
+    height: 50px;
+    margin: 0 auto;
+    width: 1000px;
+    padding:0;    
+ }   
+
+.menu > li {
+    width:20%;
+    border-right:1px solid #5ba2e6;
+}
+
+.menu li {
+    list-style: none;
+    position: relative;
+    
+}
+
+.menu li a {
+    background: #001b34;
+    border-right: 1px solid #eee;
+    
+    color: #fff;
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;  
+}
+
+.menu li a:hover  {
+    background: #034f96;
+    transition:all 1s;
+}
+
+.menu li li {
+    height: 0;
+    overflow: hidden;
+    transition: .5s;
+}
+.menu li li a {
+    border-top: 1px solid #eee;
+   
+}
+.menu li:hover > ul > li {
+    height: 50px;
+    overflow: visible;
+}
+
+/*  ３階層用    */
+.menu li ul li ul{
+    left: 100%;
+    position: absolute;    
+    width: 100%;
+    top: 0px;
+    
+}
+
+
+.main {
+    height:500px;
+    margin: 0 auto;
+   
+    width: 1000px;
+    
+    background-image: url(/img/photo/coconats2.png);
+    background-size: cover;
+
+}
+
+footer {
+    height:100px;
+    margin: 0 auto;    
+    width: 1000px;
+    
+    background-color:yellow
+}
+
+.error_message {
+    color:red;
+}

@@ -1,0 +1,55 @@
+<div class="container">
+
+    <h2>検索結果（入金日基準）</h2>
+
+    <%require "date"%>
+
+
+    <div class="select-all">
+        
+        <%= form_tag("/deposts/#{current_user.id}/create")  do |f| %>
+
+            <li>取引先</li>
+            <input value ="<%= @cust.cust_name %>" class="c_name">
+            
+
+            <!-- d.end_of_month 月末を示す -->
+
+            
+            
+            <!-- 売上日  -->
+            
+            <ul>
+                <li>入金日</li>
+                
+                <input value = "<%= @sales_year %>" class="year" class="year">
+                <li class="yymm">年</li> 
+
+                <input value = "<%= @sales_month %>" class="month" class="month">
+                <li class="yymm">月</li> 
+                <%=link_to("戻る","/deposits/#{current_user.id}/index_select_payment")%>
+
+            </ul>
+
+
+        <% end %>
+    </div>
+
+    <table border=1>
+    <tr><th>売上日</th> <th>入金日</th>　<th>振込金額</th> <th>振込手数料</th>
+    <th>手形回収</th> <th>その他</th> </tr>
+        <% @depos.each do |depo| %>
+            <% acco = Account.find_by(id: depo.account_id) %>
+            <tr>
+            <td class="s_date"><%=acco.sales_date%></td>
+            <td class="s_date"><%=depo.payment_date%></td>
+            <td class="amount"><%=depo.deposit_amount.to_i.to_s(:delimited)%></td>           
+            <td class="amount"><%=depo.transfer_fee.to_i.to_s(:delimited)%></td>
+            <td class="amount"><%=depo.notes_rec.to_i.to_s(:delimited)%></td>
+            <td class="amount"><%=depo.temporary_pay.to_i.to_s(:delimited)%></td>
+            </tr>
+
+        <% end %>
+        
+    </table>
+</div>

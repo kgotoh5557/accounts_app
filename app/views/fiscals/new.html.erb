@@ -1,0 +1,42 @@
+
+
+<% d = Date.today %>
+<%= form_tag("/fiscals/#{current_user.id}/create") do %>
+    <h2>会計年度初期登録画面</h2>
+    <% if @fiscal %>
+        <% @fiscal.errors.full_messages.each do |message| %>
+            <div class="form-error">
+            <%= message %>
+            </div>
+        <% end %>
+    <%end%>
+    
+    <ul>
+        <select name="year" >
+        <% @year=[2019,2020,2021] %>
+        <%= @year.each do |year| %>
+            <% if year == d.year %>
+                <option value="<%=year%>" selected><%=year%></option>
+            <%else%>
+                <option value="<%=year%>"><%=year%></option> 
+            <%end%>
+        <% end %>
+        </select> 
+
+        年度
+
+        <select name="month" >
+        <% @month=[1,2,3,4,5,6,7,8,9,10,11,12] %>
+        <%= @month.each do |month| %>
+            <% if month == 1 %>
+            <option value="<%=month%>" selected><%=month%></option>
+            <%else%>
+            <option value="<%=month%>" ><%=month%></option>
+            <%end%>
+        <% end %>
+        </select> 
+        月
+    </ul>
+    <li><input type="submit" value="登録"></li>
+
+<%end%>

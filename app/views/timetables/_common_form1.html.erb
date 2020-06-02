@@ -1,0 +1,28 @@
+<ul>
+                <li>取引先</li>
+                <select name="cust_id" class="c_name_left">
+                <%= @custs.each do |cust| %>
+                    <option value="<%=cust.id%>"><%=cust.cust_name%></option>
+                <% end %>
+                </select>
+                <div class="clear"></div>
+            </ul>
+
+            <ul>
+                <li>会計年</li>
+                
+                <% d = Date.today %>
+                <select name="year" class="year-s">
+                <% @year=[2019,2020,2021] %>
+                <%= @year.each do |year| %>
+                    <% if year == d.year %>
+                        <option value="<%=year%>" selected><%=year%></option>
+                    <%else%>
+                        <option value="<%=year%>"><%=year%></option> 
+                    <%end%>
+                <% end %>
+                </select> 
+                <li class="yymm">年度</li>
+                <input type="submit" value = "実行" class="search-btn">
+    
+            </ul>

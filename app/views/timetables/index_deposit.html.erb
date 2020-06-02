@@ -1,0 +1,11 @@
+<div class="container">
+    <h2>時系列表（入金日基準）</h2>
+
+    <div class="select-all">
+    <%= form_tag("/timetables/#{current_user.id}/index/2")  do |f| %>
+
+            <%= render :partial => "common_form1" %>    
+    
+    <% end %>
+    </div>
+</div>
