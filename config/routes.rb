@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  get 'room/index'
+  get 'tkcs/:id/index' => "tkcs#index"
+
+
   devise_for :users
   get 'downloads/index'
   get 'timetables/index'
@@ -72,6 +74,6 @@ Rails.application.routes.draw do
   get "downloads/:id" => "downloads#download"
 
   get "room/show" => "room#show"
-  
+  get 'room/index'
   
 end
