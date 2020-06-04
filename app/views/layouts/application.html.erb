@@ -62,7 +62,7 @@
                 </ul>
               
               </li>
-              <li><%= link_to("仕訳ファイル作成","/downloads/#{current_user.id}/index") %></li>
+              <li><%= link_to("仕訳ファイル作成","/tkcs/#{current_user.id}/index") %></li>
               <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
           </ul>    
           <% else %>

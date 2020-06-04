@@ -131,4 +131,13 @@ class Account < ApplicationRecord
             end    
         end
     end
+
+    def self.tkc_export(user_id)
+        tkc = []
+        where(user_id: user_id).each do |acco|
+             tkc << [acco.cust_id, acco.amount, acco.memo]
+        end
+        
+        return tkc
+    end
 end
