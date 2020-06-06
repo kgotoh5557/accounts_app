@@ -82,5 +82,16 @@ class Deposit < ApplicationRecord
         notes, temporarys, total_deposits
 
         
-    end    
+    end 
+
+    def self.tkc_export(user_id)
+        tkc = []
+        where(user_id: user_id).each do |depo|
+             tkc << [depo.notes_rec, depo.transfer_fee, depo.temporary_pay, depo.memo, depo.account_id, depo.reduced_tax]
+
+                   # 手形入金、振込手数料、その他入金、備考、売掛金ｉｄ、軽減税率区分
+        end
+        
+        return tkc
+    end   
 end
